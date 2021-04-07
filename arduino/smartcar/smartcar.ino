@@ -19,14 +19,15 @@ void setup() {
 }
 
 void loop() {
-  Serial.println(front.getDistance());
+  int currDist = front.getDistance();
+  Serial.println(currDist);
   delay(10);
 
-  if (front.getDistance() <= minimumDistance && front.getDistance() > 0)
+  if (currDist <= minimumDistance && currDist > 0)
   {
     car.setSpeed(0);
   }
-  else if(front.getDistance() > minimumDistance) {
+  else if(currDist > minimumDistance) {
     car.setSpeed(5);
     Serial.println("Object Ahoy!");
   }
