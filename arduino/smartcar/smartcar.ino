@@ -1,24 +1,63 @@
+#include <MQTT.h>
+#include <WiFi.h>
+#ifdef __SMCE__
+#include <OV767X.h>
+#endif
+
 #include <Smartcar.h>
+
+#ifndef __SMCE__
+WiFiClient net;
+#endif
+MQTTClient mqtt;
 
 ArduinoRuntime arduinoRuntime;
 BrushedMotor leftMotor(arduinoRuntime, smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(arduinoRuntime, smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
 
-const int TRIGGER_PIN = 6;
-const int ECHO_PIN = 7;
-const unsigned int MAX_DISTANCE = 300;
-const int minimumDistance = 50;
-
-SR04 front(arduinoRuntime, TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 SimpleCar car(control);
+
+
+const auto oneSecond = 1000UL;
+const auto triggerPin = 6;
+const auto echoPin = 7;
+const auto maxDistance = 400;
+const auto minimumDistance = 50;
+SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
+
+
+int speed = 100;
+
+
+auto message_func = [](String topic, String message){
+      if (message == "forward") {
+        car.setSpeed(speed);
+      } else if (message == "backward") {
+        car.setSpeed(speed*-1);
+      } else {
+        Serial.println(topic + " " + message);
+      }
+};
 
 void setup() {
   Serial.begin(9600);
-    car.setSpeed(100);
+  
+
+  mqtt.begin(WiFi);
+
+  if(mqtt.connect("username", "username", "password" ))
+  {
+    mqtt.subscribe("topic", 1);
+    mqtt.onMessage(message_func);
+  }
 }
 
 void loop() {
+if (mqtt.connected()) 
+  {
+      mqtt.loop();
+  }
   int currDist = front.getDistance();
   Serial.println(currDist);
   delay(10);
@@ -31,8 +70,4 @@ void loop() {
     car.setSpeed(5);
     Serial.println("Object Ahoy!");
   }
-  else{
-    Serial.println("No objects in sight!");
-  }
-  
 }
