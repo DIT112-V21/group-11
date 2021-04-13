@@ -1,0 +1,10 @@
+{
+  "name": "group-11",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "mqtt_controller.js"
+  },
+  "dependencies": {
+    "mqtt": "^4.2.6"
+  }
+},

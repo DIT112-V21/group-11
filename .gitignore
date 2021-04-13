@@ -1,3 +1,6 @@
+node/node_modules
+.vs
+.idea
 # Prerequisites
 *.d
 

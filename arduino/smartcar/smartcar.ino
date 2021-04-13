@@ -48,7 +48,7 @@ void setup() {
 
   if(mqtt.connect("username", "username", "password" ))
   {
-    mqtt.subscribe("topic", 1);
+    mqtt.subscribe("SMCE-Group11", 1);
     mqtt.onMessage(message_func);
   }
 }
@@ -59,7 +59,7 @@ if (mqtt.connected())
       mqtt.loop();
   }
   int currDist = front.getDistance();
-  Serial.println(currDist);
+  Serial.println("Front dist: " + currDist);
   delay(10);
 
   if (currDist <= minimumDistance && currDist > 0)
