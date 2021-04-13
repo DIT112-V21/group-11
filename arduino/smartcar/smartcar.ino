@@ -44,8 +44,6 @@ void setup() {
   Serial.begin(9600);
   
 
-  mqtt.begin(WiFi);
-
   if(mqtt.connect("username", "username", "password" ))
   {
     mqtt.subscribe("SMCE-Group11", 1);

@@ -19,10 +19,10 @@ function publish(topic,msgStr) {
     console.log("publishing", msgStr);
     if (client.connected === true) {
         switch (message) {
-            case 30 || 38:
+            case 25:
                 client.publish(topic, "forward")
                 break;
-            case 33:
+            case 35:
                 client.publish(topic, "backward")
                 break;
             default:
