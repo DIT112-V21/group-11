@@ -1,14 +1,10 @@
 #include <MQTT.h>
-#include <WiFi.h>
 #ifdef __SMCE__
 #include <OV767X.h>
 #endif
 
 #include <Smartcar.h>
 
-#ifndef __SMCE__
-WiFiClient net;
-#endif
 MQTTClient mqtt;
 
 ArduinoRuntime arduinoRuntime;
