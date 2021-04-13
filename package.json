@@ -1,0 +1,8 @@
+{
+  "name": "group-11",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "mqtt": "^4.2.6"
+  }
+}
