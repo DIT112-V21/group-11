@@ -2,7 +2,6 @@
 #ifdef __SMCE__
 #include <OV767X.h>
 #endif
-
 #include <Smartcar.h>
 
 MQTTClient mqtt;
@@ -24,13 +23,21 @@ SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 
 
 int speed = 100;
-
+int hardTurn = 30;
 
 auto message_func = [](String topic, String message){
       if (message == "forward") {
-        car.setSpeed(speed);
+        car.setSpeed(100);
       } else if (message == "backward") {
-        car.setSpeed(speed*-1);
+          car.setSpeed(-100);
+      } else if (message == "right") {
+          car.setAngle(30);
+      } else if (message == "left") {
+          car.setAngle(-30);
+      } else if (message == "straight") {
+          car.setAngle(0);
+      } else if (message == "stop") {
+          car.setSpeed(0);
       } else {
         Serial.println(topic + " " + message);
       }
@@ -51,17 +58,5 @@ void loop() {
 if (mqtt.connected()) 
   {
       mqtt.loop();
-  }
-  int currDist = front.getDistance();
-  Serial.println("Front dist: " + currDist);
-  delay(10);
-
-  if (currDist <= minimumDistance && currDist > 0)
-  {
-    car.setSpeed(0);
-  }
-  else if(currDist > minimumDistance) {
-    car.setSpeed(5);
-    Serial.println("Object Ahoy!");
   }
 }
