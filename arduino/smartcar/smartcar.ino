@@ -1,14 +1,10 @@
 #include <MQTT.h>
-#include <WiFi.h>
 #ifdef __SMCE__
 #include <OV767X.h>
 #endif
 
 #include <Smartcar.h>
 
-#ifndef __SMCE__
-WiFiClient net;
-#endif
 MQTTClient mqtt;
 
 ArduinoRuntime arduinoRuntime;
@@ -68,7 +64,6 @@ auto message_func = [](String topic, String message){
 void setup() {
   Serial.begin(9600);
   car2.enableCruiseControl();
-  mqtt.begin(WiFi);
 
   if(mqtt.connect("username", "username", "password" ))
   {
