@@ -81,5 +81,5 @@ void loop() {
      //const auto travelledDistance =String(car2.getDistance());
      //mqtt.publish("SimonDrives", travelledDistance);
   //}
-  //delay(500);
+  //delay(100);
 }
