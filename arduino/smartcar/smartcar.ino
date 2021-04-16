@@ -13,7 +13,6 @@ DifferentialControl control(leftMotor, rightMotor);
 
 SimpleCar car(control);
 
-
 const auto oneSecond = 1000UL;
 const auto triggerPin = 6;
 const auto echoPin = 7;
@@ -21,8 +20,23 @@ const auto maxDistance = 400;
 const auto minimumDistance = 50;
 SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 
+const auto pulsesPerMeter = 600;
 
+DirectionlessOdometer leftOdometer(
+    arduinoRuntime,
+    smartcarlib::pins::v2::leftOdometerPin,
+    []() { leftOdometer.update(); },
+    pulsesPerMeter);
+DirectionlessOdometer rightOdometer(
+    arduinoRuntime,
+    smartcarlib::pins::v2::rightOdometerPin,
+    []() { rightOdometer.update(); },
+    pulsesPerMeter);
+
+DistanceCar car2(arduinoRuntime, control, leftOdometer, rightOdometer);
 int speed = 100;
+int hardTurn = 30;
+
 int hardTurn = 30;
 
 auto message_func = [](String topic, String message){
@@ -43,20 +57,29 @@ auto message_func = [](String topic, String message){
       }
 };
 
+
+    
+
 void setup() {
   Serial.begin(9600);
-  
+  car2.enableCruiseControl();
 
   if(mqtt.connect("username", "username", "password" ))
   {
-    mqtt.subscribe("SMCE-Group11", 1);
+    mqtt.subscribe("topic/#", 1);
     mqtt.onMessage(message_func);
   }
 }
 
 void loop() {
-if (mqtt.connected()) 
+  car2.update();
+  if (mqtt.connected()) 
   {
-      mqtt.loop();
+      mqtt.loop(); 
   }
+   if(car2.getSpeed()!= 0){
+   const auto travelledDistance =String(car2.getDistance());
+   mqtt.publish("topic/distance", travelledDistance);
+   }
+   delay(500);
 }
