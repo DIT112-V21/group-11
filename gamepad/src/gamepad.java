@@ -1,6 +1,5 @@
 import com.studiohartman.jamepad.*;
 import org.eclipse.paho.client.mqttv3.*;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class gamepad {
@@ -11,7 +10,7 @@ public class gamepad {
     public static void main(String[] args) throws MqttException, InterruptedException {
 
         String publisherId = "1";
-        MqttMessage meddelande = new MqttMessage();
+        MqttMessage msgcheck = new MqttMessage();
 
         IMqttClient publisher = new MqttClient("tcp://localhost:1883",publisherId);
         MqttConnectOptions settings = new MqttConnectOptions();
@@ -36,17 +35,17 @@ public class gamepad {
                     MqttMessage msgA = new MqttMessage("forward".getBytes());
                     msgA.setQos(0);
                     msgA.setRetained(true);
-                    if(!meddelande.equals(msgA) ) {
+                    if(!msgcheck.equals(msgA) ) {
                         publisher.publish("SimonDrives", msgA);
-                        meddelande = msgA;
+                        msgcheck = msgA;
                     }
                 } else if (currController.isButtonPressed(ControllerButton.X)) {
                     MqttMessage msgX = new MqttMessage("backward".getBytes());
                     msgX.setQos(0);
                     msgX.setRetained(true);
-                    if(!meddelande.equals(msgX) ) {
+                    if(!msgcheck.equals(msgX) ) {
                         publisher.publish("SimonDrives", msgX);
-                        meddelande = msgX;
+                        msgcheck = msgX;
                     }
 
                 }
@@ -54,9 +53,9 @@ public class gamepad {
                     MqttMessage msgStop = new MqttMessage("stop".getBytes());
                     msgStop.setQos(0);
                     msgStop.setRetained(true);
-                    if(!meddelande.equals(msgStop) ) {
+                    if(!msgcheck.equals(msgStop) ) {
                         publisher.publish("SimonDrives", msgStop);
-                        meddelande = msgStop;
+                        msgcheck = msgStop;
                     }
 
                 }
@@ -65,19 +64,29 @@ public class gamepad {
                     MqttMessage msgLeft = new MqttMessage("left".getBytes());
                     msgLeft.setQos(0);
                     msgLeft.setRetained(true);
-                    publisher.publish("SimonDrives", msgLeft);
+                    if(!msgcheck.equals(msgLeft) ) {
+                        publisher.publish("SimonDrives", msgLeft);
+                        msgcheck = msgLeft;
+                    }
+
 
                 } else if (currController.getAxisState(ControllerAxis.LEFTX) > 0.5){
                     MqttMessage msgRight = new MqttMessage("right".getBytes());
                     msgRight.setQos(0);
                     msgRight.setRetained(true);
-                    publisher.publish("SimonDrives", msgRight);
+                    if(!msgcheck.equals(msgRight) ) {
+                        publisher.publish("SimonDrives", msgRight);
+                        msgcheck = msgRight;
+                    }
 
                 } else if (currController.getAxisState(ControllerAxis.LEFTX) < 0.5 && currController.getAxisState(ControllerAxis.LEFTX) > -0.5) {
                     MqttMessage msgStraight = new MqttMessage("straight".getBytes());
                     msgStraight.setQos(0);
                     msgStraight.setRetained(true);
-                    publisher.publish("SimonDrives", msgStraight);
+                    if (!msgcheck.equals(msgStraight)) {
+                        publisher.publish("SimonDrives", msgStraight);
+                        msgcheck = msgStraight;
+                    }
                 }
 
             } catch (ControllerUnpluggedException e){
