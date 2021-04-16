@@ -2,7 +2,6 @@
 #ifdef __SMCE__
 #include <OV767X.h>
 #endif
-
 #include <Smartcar.h>
 
 MQTTClient mqtt;
@@ -36,9 +35,6 @@ DirectionlessOdometer rightOdometer(
 
 DistanceCar car2(arduinoRuntime, control, leftOdometer, rightOdometer);
 int speed = 100;
-
-
-int hardTurn = 30;
 
 auto message_func = [](String topic, String message){
       if (message == "forward") {
@@ -77,7 +73,7 @@ void loop() {
   if (mqtt.connected()) 
   {
       mqtt.loop(); 
-     }
+  }
    if(car2.getSpeed()!= 0){
    const auto travelledDistance =String(car2.getDistance());
    mqtt.publish("topic/distance", travelledDistance);
