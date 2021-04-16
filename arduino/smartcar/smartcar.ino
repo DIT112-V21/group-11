@@ -35,9 +35,6 @@ DirectionlessOdometer rightOdometer(
 
 DistanceCar car2(arduinoRuntime, control, leftOdometer, rightOdometer);
 int speed = 100;
-int hardTurn = 30;
-
-int hardTurn = 30;
 
 auto message_func = [](String topic, String message){
       if (message == "forward") {
