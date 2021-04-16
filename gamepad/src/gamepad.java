@@ -1,15 +1,17 @@
 import com.studiohartman.jamepad.*;
 import org.eclipse.paho.client.mqttv3.*;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class gamepad {
 
 
 
 
-    public static void main(String[] args) throws MqttException {
+    public static void main(String[] args) throws MqttException, InterruptedException {
 
         String publisherId = "1";
+        MqttMessage meddelande = new MqttMessage();
 
         IMqttClient publisher = new MqttClient("tcp://localhost:1883",publisherId);
         MqttConnectOptions settings = new MqttConnectOptions();
@@ -17,7 +19,6 @@ public class gamepad {
         settings.setCleanSession(true);
         settings.setConnectionTimeout(10);
         publisher.connect(settings);
-
         ControllerManager controller = new ControllerManager();
         controller.initSDLGamepad();
 
@@ -25,6 +26,8 @@ public class gamepad {
         ControllerIndex currController = controller.getControllerIndex(0);
 
         while(true) {
+            TimeUnit.MILLISECONDS.sleep(50);
+
 
             controller.update();
 
@@ -33,18 +36,29 @@ public class gamepad {
                     MqttMessage msgA = new MqttMessage("forward".getBytes());
                     msgA.setQos(0);
                     msgA.setRetained(true);
-                    publisher.publish("SimonDrives", msgA);
+                    if(!meddelande.equals(msgA) ) {
+                        publisher.publish("SimonDrives", msgA);
+                        meddelande = msgA;
+                    }
                 } else if (currController.isButtonPressed(ControllerButton.X)) {
                     MqttMessage msgX = new MqttMessage("backward".getBytes());
                     msgX.setQos(0);
                     msgX.setRetained(true);
-                    publisher.publish("SimonDrives", msgX);
+                    if(!meddelande.equals(msgX) ) {
+                        publisher.publish("SimonDrives", msgX);
+                        meddelande = msgX;
+                    }
+
                 }
                 else {
                     MqttMessage msgStop = new MqttMessage("stop".getBytes());
                     msgStop.setQos(0);
                     msgStop.setRetained(true);
-                    publisher.publish("SimonDrives", msgStop);
+                    if(!meddelande.equals(msgStop) ) {
+                        publisher.publish("SimonDrives", msgStop);
+                        meddelande = msgStop;
+                    }
+
                 }
 
                 if (currController.getAxisState(ControllerAxis.LEFTX) < -0.5){
