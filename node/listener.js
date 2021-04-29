@@ -23,7 +23,7 @@ const db = new Pool({
     user: "postgres",
     host: "localhost",
     database: "leaderboard",
-    password: "", //add password to your local servers user
+    password: "", //add password to your local servers user!
     port: "5432"
 });
 
