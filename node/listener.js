@@ -4,9 +4,28 @@ const client  = mqtt.connect("mqtt://127.0.0.1");
 const topic = "SimonDrives/time/";
 let messagecount = 0;
 let trialstatus = false;
-let result = 0;
-const highscorelist = new ArrayList;
-let standing = 1;
+let playerScore = 0;
+let username = '';
+
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+readline.question('Who are you? \n', name => {
+    username = name;
+    console.log('Time to drive ' + name + '!!!!');
+    readline.close();
+});
+const { Pool, Client } = require("pg");
+
+const db = new Pool({
+    user: "postgres",
+    host: "localhost",
+    database: "leaderboard",
+    password: "", //add password to your local servers user
+    port: "5432"
+});
 
 module.exports.listener=function () {
     let distance=0;
@@ -39,18 +58,45 @@ module.exports.listener=function () {
 
     function publish(topic,msgStr) {
         if (client.connected === true) {
-            result = distance;
-            console.log("DIN DISTANS BLEV: " + result);
-            leaderboard();
+            playerScore = distance;
+            console.log("DIN DISTANS BLEV: " + playerScore);
             console.log("publishing", msgStr);
             client.publish(topic,msgStr);
+            updateLeaderBoard();
+            setTimeout(leaderBoard, 50);
         }
     }
 
-    function leaderboard() {
+    function leaderBoard() {
+
         console.log("***----  LEADERBOARD  ----***");
-        highscorelist.add(result);
-        console.log(standing + ". " + highscorelist.toString());
-        standing++;
+
+        const query = 'select score, username from result order by score DESC limit 5';
+
+
+        db.query(query, (err, res) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            for (let row of res.rows) {
+                console.log(row);
+            }
+
+        });
+    }
+
+    function updateLeaderBoard() {
+
+
+        let score = "INSERT INTO result(score, username) VALUES ('" + playerScore + "', '" + username + "')";
+        db.query(
+            score
+            // (err, res) => {
+            //     console.log(err, res);
+            // }
+
+
+        );
     }
 }
