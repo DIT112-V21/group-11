@@ -30,7 +30,7 @@ function publish(topic,msgStr) {
                 client.publish(topic, "backward")
                 break;
             default:
-            client.publish(topic, msgStr);
+                client.publish(topic, msgStr);
         }
     }
 }

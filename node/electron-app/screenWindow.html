@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="renderer.js"></script>
+</head>
+<body style="background-color:gray">
+<nav id="#fromMQTT"></nav>
+<script>
+    const mqtt = require('mqtt');
+    let messageCount = 0;
+    let playerScore = 0;
+    let distance=0;
+    let trialStatus = false;
+    let result;
+    const client  = mqtt.connect("mqtt://127.0.0.1");
+    (async() => {
+        const topic = "SimonDrives/time/";
+        client.on("connect", function () {
+            console.log("connected2");
+        });
+        client.subscribe(topic, {qos: 1});
+        client.on('message', function (topic, message) {
+            try {
+                result="Distance: "+message.toString();
+                distance= message.toString();
+                document.getElementById("#fromMQTT").innerHTML =result;
+                messageCount++;
+                let timesUp = false;
+                if (messageCount > 0 && !trialStatus) {
+                    timesUp = true;
+                }
+                if (timesUp) {
+                    setTimeout(publish, 5 * 1000, "SimonDrives/time/", "stop");
+                    trialStatus = true;
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        });
+        function publish(topic, msgStr) {
+            if (client.connected === true) {
+                playerScore = distance;
+                document.write('<body style="background-color: grey">' +
+                    '<button style="position: fixed; right: 20px; bottom:20px" id="exit2 " onclick="window.close();">Exit</button></body>'
+                    + '<p style="text-align: center;font-size: 70px; id="jstext">'+"Your Final Distance is: " + playerScore+ '</p>'
+                    +'</body>');
+                client.publish(topic, msgStr);
+                document.getElementById("#fromMQTT").innerHTML =result;
+            }
+        }
+
+    })();
+</script>
+
+       <video id="video" width="4000" height="625"></video>
+       <button id="refresh" onclick="getVideoSources()">Refresh Game</button>
+        <button id="exitGame" onclick="window.close()">Exit Game</button>
+
+</body>
+</html>

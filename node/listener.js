@@ -28,7 +28,7 @@ const db = new Pool({
 });
 
 module.exports.listener=function () {
-    let distance=0;
+    let distance = 0;
     client.on("connect", function () {
         console.log("connected2");
     });
@@ -38,10 +38,10 @@ module.exports.listener=function () {
         try {
             messagecount++;
             console.log(messagecount);
-            distance=message.toString();
-            let timesUp= false;
-            if(messagecount > 0 && !trialstatus){
-                timesUp=true;
+            distance = message.toString();
+            let timesUp = false;
+            if (messagecount > 0 && !trialstatus) {
+                timesUp = true;
             }
             if (timesUp) {
                 setTimeout(publish, 5 * 1000, "SimonDrives/time/", "stop");
@@ -56,14 +56,12 @@ module.exports.listener=function () {
     });
 
 
-    function publish(topic,msgStr) {
+    function publish(topic, msgStr) {
         if (client.connected === true) {
             playerScore = distance;
             console.log("DIN DISTANS BLEV: " + playerScore);
             console.log("publishing", msgStr);
-            client.publish(topic,msgStr);
-            updateLeaderBoard();
-            setTimeout(leaderBoard, 50);
+            client.publish(topic, msgStr);
         }
     }
 

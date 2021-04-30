@@ -1,0 +1,129 @@
+body {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+    overflow: hidden;
+
+   color: black;
+   font-family: 'Open Sans',sans-serif;
+   text-align: -moz-center;
+   -webkit-app-region: drag
+
+}
+button {
+    align-content: center;
+    -webkit-app-region: no-drag;
+}
+
+#exit {
+    position: fixed;
+    top: 200px;
+    right: 250px;
+    background-color :gray;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border-color: black;
+}
+#start {
+    position: fixed;
+    top: 100px;
+    right: 270px;
+    background-color :gray;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border-color: black;
+}
+#title{
+    color: black;
+    font-weight: bold;
+}
+#leaderboard{
+    position: fixed;
+    top: 150px;
+    right: 230px;
+    background-color :gray;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border-color: black;
+}
+#title2{
+    position: fixed;
+    bottom: 500px;
+    left: 320px;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    font-weight: bolder;
+}
+#quit{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+#videoSelectBtn{
+    position: fixed;
+    bottom: 400px;
+    left: 350px;
+}
+
+.btnquit{
+    background-color :gray;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border-color: white;
+}
+#distance{
+    color: papayawhip;
+    font-size: medium;
+    font-weight: bold;
+    position: fixed;
+    top:80px;
+    right:200px;
+}
+
+#\#fromMQTT{
+    color: white;
+    position: fixed;
+    top:80px;
+    right:150px;
+}
+.is-text{
+    background-color :gray;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border-color: white;
+}
+#refresh{
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color :gray;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border-color: white;
+}
+#exitGame{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color :gray;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border-color: white;
+}
+#jstext {
+    text-align: center;
+    font-size: 90px;
+}
+#exit2{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}

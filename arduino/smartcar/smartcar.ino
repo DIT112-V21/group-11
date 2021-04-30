@@ -14,7 +14,7 @@ DifferentialControl control(leftMotor, rightMotor);
 
 SimpleCar car(control);
 
-int latestDistance = 0; 
+int latestDistance = 0;
 const auto oneSecond = 1000UL;
 const auto triggerPin = 6;
 const auto echoPin = 7;
@@ -58,7 +58,7 @@ auto message_func = [](String SimonDrives, String message){
 };
 
 
-    
+
 
 void setup() {
   Serial.begin(9600);
@@ -72,20 +72,19 @@ void setup() {
 }
 
 void loop() {
-  
   //car2.update();
-  if (mqtt.connected()) 
+  if (mqtt.connected())
   {
-      mqtt.loop(); 
-     
+      mqtt.loop();
+
   }
-  
+
   if(car2.getSpeed()!= 0){
      const auto distanceCheck = car2.getDistance();
      const auto travelledDistance = String(distanceCheck);
-     if (distanceCheck != latestDistance) { 
+     if (distanceCheck != latestDistance) {
      mqtt.publish("SimonDrives/time/", travelledDistance);
-     latestDistance = distanceCheck; 
+     latestDistance = distanceCheck;
      }
   }
 }
