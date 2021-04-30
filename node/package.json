@@ -1,10 +1,15 @@
 {
   "name": "group-11",
   "version": "1.0.0",
+  "main": "electron-app/index.js",
   "scripts": {
-    "start": "mqtt_controller.js"
+    "start": "electron electron-app/index.js"
   },
   "dependencies": {
-    "mqtt": "^4.2.6"
+    "mqtt": "^4.2.6",
+    "pg": "^8.6.0"
+  },
+  "devDependencies": {
+    "electron": "^12.0.5"
   }
-},
+}

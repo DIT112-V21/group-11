@@ -14,6 +14,7 @@ DifferentialControl control(leftMotor, rightMotor);
 
 SimpleCar car(control);
 
+int latestDistance = 0;
 const auto oneSecond = 1000UL;
 const auto triggerPin = 6;
 const auto echoPin = 7;
@@ -23,43 +24,41 @@ SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 
 const auto pulsesPerMeter = 600;
 
-DirectionlessOdometer leftOdometer(
+DirectionlessOdometer leftOdometer{
     arduinoRuntime,
     smartcarlib::pins::v2::leftOdometerPin,
     []() { leftOdometer.update(); },
-    pulsesPerMeter);
-DirectionlessOdometer rightOdometer(
+    pulsesPerMeter};
+DirectionlessOdometer rightOdometer{
     arduinoRuntime,
     smartcarlib::pins::v2::rightOdometerPin,
     []() { rightOdometer.update(); },
-    pulsesPerMeter);
+    pulsesPerMeter};
 
 DistanceCar car2(arduinoRuntime, control, leftOdometer, rightOdometer);
 int speed = 100;
-
-
 int hardTurn = 30;
 
-auto message_func = [](String topic, String message){
+auto message_func = [](String SimonDrives, String message){
       if (message == "forward") {
         car.setSpeed(100);
       } else if (message == "backward") {
           car.setSpeed(-100);
       } else if (message == "right") {
-          car.setAngle(30);
+          car.setAngle(50);
       } else if (message == "left") {
-          car.setAngle(-30);
+          car.setAngle(-50);
       } else if (message == "straight") {
           car.setAngle(0);
       } else if (message == "stop") {
           car.setSpeed(0);
       } else {
-        Serial.println(topic + " " + message);
+        Serial.println(message);
       }
 };
 
 
-    
+
 
 void setup() {
   Serial.begin(9600);
@@ -67,20 +66,26 @@ void setup() {
 
   if(mqtt.connect("username", "username", "password" ))
   {
-    mqtt.subscribe("topic/#", 1);
+    mqtt.subscribe("SimonDrives/#", 1);
     mqtt.onMessage(message_func);
   }
 }
 
 void loop() {
-  car2.update();
-  if (mqtt.connected()) 
+
+  //car2.update();
+  if (mqtt.connected())
   {
-      mqtt.loop(); 
+      mqtt.loop();
+
+  }
+
+  if(car2.getSpeed()!= 0){
+     const auto distanceCheck = car2.getDistance();
+     const auto travelledDistance = String(distanceCheck);
+     if (distanceCheck != latestDistance) {
+     mqtt.publish("SimonDrives/time/", travelledDistance);
+     latestDistance = distanceCheck;
      }
-   if(car2.getSpeed()!= 0){
-   const auto travelledDistance =String(car2.getDistance());
-   mqtt.publish("topic/distance", travelledDistance);
-   }
-   delay(500);
+  }
 }
