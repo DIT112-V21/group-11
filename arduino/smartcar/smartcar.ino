@@ -72,7 +72,6 @@ void setup() {
 }
 
 void loop() {
-
   //car2.update();
   if (mqtt.connected())
   {

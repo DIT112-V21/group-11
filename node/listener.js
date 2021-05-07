@@ -1,4 +1,5 @@
 const mqtt = require('mqtt');
+const ArrayList = require("arraylist");
 const client  = mqtt.connect("mqtt://127.0.0.1");
 const topic = "SimonDrives/time/";
 let messagecount = 0;
@@ -64,4 +65,36 @@ module.exports.listener=function () {
         }
     }
 
+    function leaderBoard() {
+
+        console.log("***----  LEADERBOARD  ----***");
+
+        const query = 'select score, username from result order by score DESC limit 5';
+
+
+        db.query(query, (err, res) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            for (let row of res.rows) {
+                console.log(row);
+            }
+
+        });
+    }
+
+    function updateLeaderBoard() {
+
+
+        let score = "INSERT INTO result(score, username) VALUES ('" + playerScore + "', '" + username + "')";
+        db.query(
+            score
+            // (err, res) => {
+            //     console.log(err, res);
+            // }
+
+
+        );
+    }
 }
