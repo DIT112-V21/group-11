@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="renderer.js"></script>
 </head>
-<body style="background-color:gray">
+<body style="background-color:gray" onload="getVideoSources()">
 <nav id="#fromMQTT"></nav>
 <script>
     const mqtt = require('mqtt');
@@ -42,19 +42,18 @@
         function publish(topic, msgStr) {
             if (client.connected === true) {
                 playerScore = distance;
-                document.write('<body style="background-color: grey">' +
-                    '<button style="position: fixed; right: 20px; bottom:20px" id="exit2 " onclick="window.close();">Exit</button></body>'
-                    + '<p style="text-align: center;font-size: 70px; id="jstext">'+"Your Final Distance is: " + playerScore+ '</p>'
-                    +'</body>');
                 client.publish(topic, msgStr);
-                document.getElementById("#fromMQTT").innerHTML =result;
+                localStorage.setItem("distance",playerScore);
+                document.getElementById("#fromMQTT").innerHTML =distance;
             }
+            loadPage("resultPage.html")
         }
 
     })();
+
 </script>
 
-       <video id="video" width="4000" height="625"></video>
+       <video id="video" width="100%" height="100%"></video>
        <button id="refresh" onclick="getVideoSources()">Refresh Game</button>
         <button id="exitGame" onclick="window.close()">Exit Game</button>
 

@@ -43,10 +43,9 @@ openWindow = event => {
     const {BrowserWindow,screen} = require('electron').remote;
     const { width, height } = screen.getPrimaryDisplay().workAreaSize;
     const newWindow = new BrowserWindow({
-        width: width *0.7,
-        height: height*0.9,
+        width: width,
+        height: height,
         frame: false,
-        alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -54,7 +53,16 @@ openWindow = event => {
         }
     })
     newWindow.loadFile('screenWindow.html')
+    const video = newWindow.open('screenWindow.html')
     newWindow.once("ready-to-show",()=>{
         newWindow.show()
+        video.load(getVideoSources())
     })
+}
+async function loadPage (page) {
+    try {
+        await remote.getCurrentWindow().loadFile(page)
+    } catch (e) {
+        console.log(`Invalid HTML file path loaded. ` + e)
+    }
 }
