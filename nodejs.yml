@@ -1,0 +1,21 @@
+name: Node CI
+
+on:
+  pull_request:
+  push:
+    branches: 
+      - master
+
+jobs:
+  test:
+    name: Node test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    env:
+      CI: true
