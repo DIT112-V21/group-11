@@ -18,10 +18,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install
       run: npm install
-    - name: Install Modules
-      run: |
-          npm i mqtt --save
-          npm i -D electron@latest
-          npm i dialogs --save
-    - name: Test
-      run: node/package.json
+    - name: Run npm
+      run: npm run
