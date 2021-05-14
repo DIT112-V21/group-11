@@ -24,4 +24,4 @@ jobs:
           npm i -D electron@latest
           npm i dialogs --save
     - name: Test
-      run: node/ npm start 
+      run: node/package.json
