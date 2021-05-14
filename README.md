@@ -6,7 +6,7 @@ We will make an application that allows us to run the car with a controller (e.g
 
 ### Why will you make it?
 
-Because at a time like this we need some entertainment. 
+Because at a time like this we need some kind of entertainment. 
 
 ### What problem does it solve?
 
