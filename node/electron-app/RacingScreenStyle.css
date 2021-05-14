@@ -1,6 +1,6 @@
 #resultButton{
     position: fixed;
-    bottom: 55%;
+    bottom: 35%;
     left: 43%;
     background-color :black;
     color: white;
@@ -19,7 +19,7 @@
  }
  #resultExitButton{
      position: fixed;
-     bottom: 55%;
+     bottom: 35%;
      left: 53%;
      background-color :black;
      color: white;
@@ -33,3 +33,19 @@
      bottom: 70%;
      left: 40%;
  }
+ #question{
+     position: fixed;
+     bottom: 60%;
+     left: 40%;
+ }
+#nameInput{
+    position: fixed;
+    bottom: 50%;
+    left: 45%;
+}
+ #name{
+     position: fixed;
+     bottom: 45%;
+     left: 47%;
+ }
+

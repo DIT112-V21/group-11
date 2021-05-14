@@ -5,6 +5,7 @@
     <title>Hello World!</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="renderer.js"></script>
+    <script defer src=""></script>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
 <body style="background: black; background-image: url('images/bg.jpg');background-size: cover">
@@ -13,8 +14,14 @@
     <p></p>
     </div>
     <div>
-        <button id="videoSelectBtn" class="button is-text" onclick="openWindow();">
-            Time Trial:
+        <button id="TimeTrialBtn" class="button is-text" onclick="openVideoWindow();">
+            Time Trial
+        </button>
+        <button id="survivalModeBtn" class="button is-text" onclick="openWindow('survival-mode.html')">
+            Surival Mode
+        </button>
+        <button id="raceModeBtn" class="button is-text" onclick="openWindow('RaceMode.html')">
+            Race Mode
         </button>
         <button class="btn btnquit" id="quit" onclick="window.close();">Quit Game</button><br>
     </div>
