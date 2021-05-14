@@ -4,6 +4,8 @@ const applicationName = /SMCE-gd:(.*)/gmi;
 
 
 
+
+
 const { desktopCapturer, remote } = require('electron');
 const { Menu } = remote;
 
@@ -39,22 +41,45 @@ async function selectSource(source) {
     videoElement.srcObject = stream;
     await videoElement.play();
 }
-openWindow = event => {
+openVideoWindow = event => {
     const {BrowserWindow,screen} = require('electron').remote;
     const { width, height } = screen.getPrimaryDisplay().workAreaSize;
     const newWindow = new BrowserWindow({
-        width: width *0.7,
-        height: height*0.9,
+        width: width,
+        height: height,
         frame: false,
-        alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
             enableRemoteModule: true,
         }
     })
-    newWindow.loadFile('screenWindow.html')
+    newWindow.loadFile('TimeTrial.html')
+    const video = newWindow.open('TimeTrial.html')
     newWindow.once("ready-to-show",()=>{
         newWindow.show()
+        video.load(getVideoSources())
     })
+}
+function openWindow(page){
+    const {BrowserWindow,screen} = require('electron').remote;
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+    const newWindow = new BrowserWindow({
+        width: width,
+        height: height,
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
+        }
+    })
+    newWindow.loadFile(page)
+}
+async function loadPage (page) {
+    try {
+        await remote.getCurrentWindow().loadFile(page)
+    } catch (e) {
+        console.log(`Invalid HTML file path loaded. ` + e)
+    }
 }

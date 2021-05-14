@@ -5,8 +5,7 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="renderer.js"></script>
 </head>
-<body style="background-color:gray">
-<nav id="#fromMQTT"></nav>
+<body style="background-color:gray" onload="getVideoSources()">
 <script>
     const mqtt = require('mqtt');
     let messageCount = 0;
@@ -15,6 +14,7 @@
     let trialStatus = false;
     let result;
     const client  = mqtt.connect("mqtt://127.0.0.1");
+
     (async() => {
         const topic = "SimonDrives/time/";
         client.on("connect", function () {
@@ -23,8 +23,11 @@
         client.subscribe(topic, {qos: 1});
         client.on('message', function (topic, message) {
             try {
-                result="Distance: "+message.toString();
                 distance= message.toString();
+                result="Distance: "+message.toString();
+                if(distance>0){
+                    counter()
+                }
                 document.getElementById("#fromMQTT").innerHTML =result;
                 messageCount++;
                 let timesUp = false;
@@ -42,21 +45,34 @@
         function publish(topic, msgStr) {
             if (client.connected === true) {
                 playerScore = distance;
-                document.write('<body style="background-color: grey">' +
-                    '<button style="position: fixed; right: 20px; bottom:20px" id="exit2 " onclick="window.close();">Exit</button></body>'
-                    + '<p style="text-align: center;font-size: 70px; id="jstext">'+"Your Final Distance is: " + playerScore+ '</p>'
-                    +'</body>');
                 client.publish(topic, msgStr);
-                document.getElementById("#fromMQTT").innerHTML =result;
+                localStorage.setItem("distance",playerScore);
+                document.getElementById("#fromMQTT").innerHTML =distance;
             }
+            loadPage("TimeTrialResultPage.html")
         }
 
     })();
+function counter(){
+    let seconds = document.getElementById("countdown").textContent;
+    const countdown = setInterval(function () {
+        seconds--;
+        document.getElementById("countdown").textContent = seconds;
+        if (seconds <= 0) clearInterval(countdown);
+    }, 1000);
+}
 </script>
-
-       <video id="video" width="4000" height="625"></video>
-       <button id="refresh" onclick="getVideoSources()">Refresh Game</button>
+    <div class="container">
+       <video id="video" width="100%" height="100%"></video>
+        <div class="Timeleft">
+            <p>Time Left:</p>
+        </div>
+            <div class="overlay">
+                <p id="countdown">5</p>
+            </div>
+        <button id="refresh" onclick="getVideoSources()">Refresh Game</button>
         <button id="exitGame" onclick="window.close()">Exit Game</button>
-
+        <nav id="#fromMQTT"></nav>
+        </div>
 </body>
 </html>
