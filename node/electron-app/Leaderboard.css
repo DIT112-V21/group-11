@@ -1,0 +1,32 @@
+body{
+    -webkit-app-region: drag
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    background: white;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+#Leaderboardexit{
+    position: fixed;
+    bottom: 10%;
+    left:85%;
+    background-color :gray;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border-color: black;
+}
+#leaderboard{
+  font-weight: bold;
+}

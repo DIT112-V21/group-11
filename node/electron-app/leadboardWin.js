@@ -10,11 +10,12 @@ function createBrowserWindow() {
         height: 600,
         width: 800,
         webPreferences: {
+            devTools:true,
             nodeIntegration: true,
             contextIsolation: false,
             enableRemoteModule: true
         }
     });
 
-    win.loadFile('index.html');
+    win.loadFile('leaderboard.html');
 }

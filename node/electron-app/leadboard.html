@@ -3,21 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-    <link rel="stylesheet" href="newStyle.css">
+    <link rel="stylesheet" href="Leaderboard.css">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
-<body style="background: deepskyblue;">
-<center>
-    <p> <label id="leaderboard">Leader Board:</label></p>
-</center>
-<div>
+<body style="background: #dcdcdc;">
 
-</div>
 <div>
-    <button class="btn btnexit" id="exit" onclick="window.close();">Quit Game</button><br>
+    <p id="leaderboard">Race Mode Leader Board:</p>
+    <button class="btn btnexit" id="Leaderboardexit" onclick="window.close();">Quit Game</button><br>
 </div>
-
+    <table id="myTable">
+        <tr>
+            <td>Player</td>
+            <td>Time</td>
+        </tr>
+    </table>
+<script>
+   let time=null;
+   let savedStringList=localStorage.getItem("raceList");
+   let savedList= JSON.parse(savedStringList)
+   //localStorage.setItem("savedList",savedList);
+  //document.getElementById("demos").innerHTML=JSON.stringify(savedList,null,0);
+   for (let i = 0; i < savedList.length; i++){
+       const obj = savedList[i];
+       let value=null;
+       let j=0;
+       const table = document.getElementById("myTable");
+       const row=table.insertRow(1);
+       const cell1 = row.insertCell(0);
+       const cell2 = row.insertCell(1);
+           for (const key in obj){
+               j++
+               value = obj[key];
+               if(j==1){
+                   cell1.innerHTML =value;
+               }
+               else if(j==2){
+                   cell2.innerHTML = value;
+               }
+               }
+   }
+</script>
 <body style="-webkit-app-region: drag">
 </body>
 </body>
+<script src="ResultHandler.js"></script>
 </html>

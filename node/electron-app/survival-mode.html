@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="renderer.js"></script>
+</head>
+<body id="survivalMode" style="background-color:gray" onload="counterStart()">
+
+<script>
+    const mqtt = require('mqtt');
+    let distance=0;
+    let Message=null;
+    let result;
+    const client  = mqtt.connect("mqtt://127.0.0.1");
+    (async() => {
+        const topic = "SimonDrives/speed";
+        client.on("connect", function () {
+            console.log("connected2");
+        });
+        client.subscribe(topic, {qos: 1});
+        client.on('message', function (topic, message) {
+            try {
+                distance= message.toString();
+                if(distance>0){
+                }
+                Message= message.toString();
+                if(Message==="SpeedCarFinish"){
+                    loadPage("SurvivalModeResult.html");
+                }
+                document.getElementById("#fromMQTT").innerHTML =result;
+
+            } catch (e) {
+                console.log(e)
+            }
+        });
+
+    })();
+    function counter(){
+        let seconds = document.getElementById("countdown").textContent;
+        if(seconds==0){
+            document.getElementById("countdown").textContent ="";
+        }
+        const countdown = setInterval(function () {
+            seconds++;
+            localStorage.setItem('time',seconds);
+            document.getElementById("countdown").textContent ="Time: "+seconds;
+          }, 1000);
+
+    }
+
+    function counterStart(){
+        let seconds = document.getElementById("startcountdown").textContent;
+        const countdown = setInterval(function () {
+            seconds--;
+            document.getElementById("startcountdown").textContent = seconds;
+            if (seconds <= 0) clearInterval(countdown);
+            if(seconds==0){
+                document.getElementById("startcountdown").textContent =" ";
+                getVideoSources();
+                counter();
+            }
+        }, 1000);
+
+    }
+
+
+</script>
+<div class="container" >
+    <video id="video" width="100%" height="100%"></video>
+
+    <div class="overlay"  >
+        <p id="countdown" contenteditable="true"></p>
+    </div>
+    <button id="refresh" onclick="getVideoSources()">Refresh Game</button>
+    <button id="exitGame" onclick="window.close()">Exit Game</button>
+    <nav id="#fromMQTT"></nav>
+</div>
+<p id="startcountdown" contenteditable="true">3</p>
+</body>
+</html>
