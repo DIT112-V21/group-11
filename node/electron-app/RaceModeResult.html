@@ -11,8 +11,7 @@
 <pre id="arrPrint"></pre>
 <pre id="arrPrint2"></pre>
 <script >
-    const dialogs= require('dialogs')
-    const Dialogs= dialogs()
+
     const time =localStorage.getItem('racetime');
     let raceList=[];
     localStorage.setItem('storedTime',time);
@@ -28,17 +27,21 @@
     }
 
     function alert() {
-        name= document.getElementById('name').value;
-        localStorage.setItem('storedName2',name);
-        addToList(addRace(name,time),raceList);
-        raceList.sort(function (a, b){
+
+
+        name = document.getElementById('name').value;
+        localStorage.setItem('storedName2', name);
+        addToList(addRace(name, time), raceList);
+        raceList.sort(function (b, a) {
             return a.Time - b.Time;
         });
-        Dialogs.alert("Your score is now saved "+name, ok => {
-            localStorage.setItem("raceList",JSON.stringify(raceList))
-                window.close(), ok
-            }
-        )
+
+        if (raceList.length > 5) {
+            raceList.shift()
+        }
+
+        localStorage.setItem("raceList", JSON.stringify(raceList));
+        window.close()
     }
     function addToList(content,List) {
         let size = List.length;

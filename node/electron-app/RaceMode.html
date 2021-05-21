@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <script defer src="renderer.js"></script>
-</head>
-<body id="survivalMode" style="background-color:gray" onload="counterStart()">
+
+<body id="survivalMode" style="background-color:gray" onload="counterStart(); resetRace()">
+
 
 <script>
     const mqtt = require('mqtt');
@@ -44,6 +45,11 @@
             document.getElementById("countdown").textContent ="Time: "+seconds;
         }, 1000);
 
+    }
+
+
+    function resetRace(){
+        client.publish("SimonDrives", "resetRace");
     }
 
     function counterStart(){
