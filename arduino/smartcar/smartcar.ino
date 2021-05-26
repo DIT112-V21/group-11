@@ -108,7 +108,7 @@ void loop() {
 
   
 
-  if(leftIR.getDistance() < 0.3 && leftIR.getDistance() > 0 && rightIR.getDistance() < 0.3 && rightIR.getDistance() > 0 && raceCarFinishedBoolean == false){
+  if(leftIR.getDistance() != 0 && rightIR.getDistance() != 0 && raceCarFinishedBoolean == false){
     finishMessage = "RaceCarFinish";
     mqtt.publish("SimonDrives/race/", finishMessage);
     raceCarFinishedBoolean = true;

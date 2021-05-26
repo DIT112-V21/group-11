@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <script defer src="renderer.js"></script>
-</head>
-<body id="survivalMode" style="background-color:gray" onload="counterStart()">
+
+<body id="survivalMode" style="background-color:gray" onload="counterStart(); resetRace()">
+
 
 <script>
     const mqtt = require('mqtt');
@@ -14,7 +15,7 @@
     let result;
     const client  = mqtt.connect("mqtt://127.0.0.1");
     (async() => {
-        const topic = "SimonDrives/race";
+        const topic = "SimonDrives/race/";
         client.on("connect", function () {
             console.log("connected2");
         });
@@ -44,6 +45,11 @@
             document.getElementById("countdown").textContent ="Time: "+seconds;
         }, 1000);
 
+    }
+
+
+    function resetRace(){
+        client.publish("SimonDrives", "resetRace");
     }
 
     function counterStart(){

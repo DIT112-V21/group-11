@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <link rel="stylesheet" href="Leaderboard.css">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<body style="background: white; background-repeat: no-repeat; background-image: url('images/racecar.jpg');
+background-size: cover" onload="maketable()">
+
+<div id="windowSizeForLeaderboard">
+  <p id="leaderboard">Time Trial Leaderboard:</p>
+  <button class="btn btnexit" id="Leaderboardexit" onclick="window.close();">Quit</button><br>
+</div>
+<table id="myTableTimeTrial">
+  <tr>
+    <td>Player</td>
+    <td>Time</td>
+  </tr>
+</table>
+<p id="demos"></p>
+<script>
+  let timeStringList=localStorage.getItem("timeTrialList");
+  let savedTimeList= JSON.parse(timeStringList);
+  document.getElementById("demos").innerHTML=JSON.stringify(savedTimeList,null,0);
+
+
+  function maketable(){
+    for (let i = 0; i < savedTimeList.length; i++){
+      const obj = savedTimeList[i];
+      let value=null;
+      let j=0;
+      const table = document.getElementById("myTableTimeTrial");
+      const row=table.insertRow(1);
+      const cell1 = row.insertCell(0);
+      const cell2 = row.insertCell(1);
+      for (const key in obj){
+        j++
+        value = obj[key];
+        if(j==1){
+          cell1.innerHTML =value;
+        }
+        else if(j==2){
+          cell2.innerHTML = value;
+        }
+      }
+    }
+  }
+
+  //localStorage.setItem("savedList",savedList);
+  //document.getElementById("demos").innerHTML=JSON.stringify(savedList,null,0);
+
+</script>
+<body style="-webkit-app-region: drag">
+</body>
+</body>
+<script src="ResultHandler.js"></script>
+
+
+</html>
