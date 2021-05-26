@@ -14,7 +14,7 @@
     let result;
     const client  = mqtt.connect("mqtt://127.0.0.1");
     (async() => {
-        const topic = "SimonDrives/speed";
+        const topic = "SimonDrives/speed/";
         client.on("connect", function () {
             console.log("connected2");
         });
@@ -43,7 +43,7 @@
         }
         const countdown = setInterval(function () {
             seconds++;
-            localStorage.setItem('time',seconds);
+            localStorage.setItem('survivaltime',seconds);
             document.getElementById("countdown").textContent ="Time: "+seconds;
           }, 1000);
 
@@ -67,6 +67,12 @@
         }, 1000);
 
     }
+
+    function resetRace(){
+        client.publish("SimonDrives", "resetRace");
+    }
+
+
 
 
 </script>

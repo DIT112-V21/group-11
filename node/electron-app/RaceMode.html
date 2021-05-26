@@ -15,7 +15,7 @@
     let result;
     const client  = mqtt.connect("mqtt://127.0.0.1");
     (async() => {
-        const topic = "SimonDrives/race";
+        const topic = "SimonDrives/race/";
         client.on("connect", function () {
             console.log("connected2");
         });

@@ -10,16 +10,30 @@
 <input type="text" id="name">
 <pre id="arrPrint"></pre>
 <pre id="arrPrint2"></pre>
-<script >
+
+<script>
+    let selectedMap = localStorage.getItem("mapValue");
 
     const time =localStorage.getItem('racetime');
-    let raceList=[];
-    localStorage.setItem('storedTime',time);
-    let stringList=localStorage.getItem("raceList");
-    let exportedList=JSON.parse(stringList);
-    if(exportedList.length!=0){
-        raceList=exportedList;
+    //
+    let lostCityRaceList = [];
+    let plankRaceList = [];
+    if (selectedMap === "lostCity"){
+        let lostCityStringList = localStorage.getItem("lostCityRaceList");
+        let lostCityExportedList = JSON.parse(lostCityStringList);
+        if (lostCityExportedList.length != 0){
+            lostCityRaceList=lostCityExportedList;
+        }
     }
+    else if (selectedMap === "plankRace"){
+        let plankRaceStringList = localStorage.getItem("plankRaceList");
+        let plankRaceExportedList = JSON.parse(plankRaceStringList);
+        if (plankRaceExportedList.length != 0){
+            plankRaceList=plankRaceExportedList;
+        }
+    }
+    //
+    localStorage.setItem('storedTime',time);
 
     function showDistance() {
         let result =  "Your Time was "+ localStorage.getItem('racetime') + " seconds";
@@ -28,20 +42,37 @@
 
     function alert() {
 
+        name= document.getElementById('name').value;
+        localStorage.setItem('storedName2',name);
+        //
+        if (selectedMap === "lostCity"){
+            addToList(addRace(name, time), lostCityRaceList);
 
-        name = document.getElementById('name').value;
-        localStorage.setItem('storedName2', name);
-        addToList(addRace(name, time), raceList);
-        raceList.sort(function (b, a) {
-            return a.Time - b.Time;
-        });
 
-        if (raceList.length > 5) {
-            raceList.shift()
+            lostCityRaceList.sort(function (b, a){
+                return a.Time - b.Time;
+            });
+            if (lostCityRaceList.length > 5){
+                lostCityRaceList.shift()
+            }
+            localStorage.setItem("lostCityRaceList", JSON.stringify(lostCityRaceList))
+
         }
+        else if(selectedMap === "plankRace"){
+            addToList(addRace(name, time), plankRaceList);
 
-        localStorage.setItem("raceList", JSON.stringify(raceList));
-        window.close()
+            plankRaceList.sort(function (b, a){
+                return a.Time - b.Time;
+            });
+            if (plankRaceList.length > 5){
+                plankRaceList.shift()
+            }
+            localStorage.setItem("plankRaceList", JSON.stringify(plankRaceList));
+
+        }
+        window.close();
+        //
+
     }
     function addToList(content,List) {
         let size = List.length;
@@ -60,9 +91,6 @@
             'Time': result
         };
         return race;
-    }
-    function clearList(){
-        raceList=[];
     }
 </script>
 <h1 id="value"></h1>

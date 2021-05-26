@@ -29,4 +29,15 @@ tr:nth-child(even) {
 }
 #leaderboard{
   font-weight: bold;
+    background-color: aquamarine;
+    right: 80%;
 }
+
+.overlay {
+    position:fixed;
+    color: white;
+    top:80px;
+    right:54%;
+}
+
+
