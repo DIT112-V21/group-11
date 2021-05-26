@@ -49,6 +49,10 @@
 
     }
 
+    function resetRace(){
+        client.publish("SimonDrives", "resetRace");
+    }
+
     function counterStart(){
         let seconds = document.getElementById("startcountdown").textContent;
         const countdown = setInterval(function () {

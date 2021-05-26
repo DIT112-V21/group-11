@@ -58,9 +58,9 @@ auto message_func = [](String SimonDrives, String message){
       } else if (message == "backward") {
           car.setSpeed(-100);
       } else if (message == "right") {
-          car.setAngle(50);
+          car.setAngle(70);
       } else if (message == "left") {
-          car.setAngle(-50);
+          car.setAngle(-70);
       } else if (message == "straight") {
           car.setAngle(0);
       } else if (message == "stop") {

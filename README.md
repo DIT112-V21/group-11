@@ -1,22 +1,17 @@
 # group-11
 
-### What you are going to make?
+### What is SimonDrives?
 
-We will make an application that allows us to run the car with a controller (e.g. Xbox controller or PlayStation controller). We will also make a game mode (time trial), you are to drive as far as possible during the set time.
+SimonDrives is a software that allows the user to drive the car in the SMCE client using a controller. The application is compatible with both Xbox(360 and newer)- and Playstation(dualshock 2 or newer) controllers. SimonDrives allows you to compete versus yourself or friends through a multitude of game modes and custom designed maps. The best scores on each map and mode will be stored in their respective leaderboard to provide a fun and competitive enviroment. 
 
 ### Why will you make it?
 
-Because at a time like this we need some entertainment. 
-
-### What problem does it solve?
-
-to help with the ongoing covid-19 boredom.
-
+As a result of the ongoing pandemic, isolation and boredom has become prevalent issues which we want to battle with this software. We believe that usage of our software will provide lots of fun moments and bring joy to all who chooses to try it. 
 
 ### How you are going to make it?
 
-By mapping the inputs of the controller to actions that the car will take. The time trail starts and you have to drive as far as you possibly can during the time given when you are given the distance you got.
+![image](https://user-images.githubusercontent.com/71591829/119638964-74522d80-be17-11eb-9703-7d14fdebba4e.png)
 
-### What kind of technology you are going to use?
+### Hardware requirements
 
-We are using a controller (e.g. Xbox controller or PlayStation controller), as well as a computer to run the software on. We have looked into using different tools for handling the controller's inputs.
+In order to use this application to its full potential, the user needs to have one compatible controller alongside a functioning PC or Mac. 

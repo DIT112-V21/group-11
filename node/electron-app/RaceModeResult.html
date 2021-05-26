@@ -10,9 +10,10 @@
 <input type="text" id="name">
 <pre id="arrPrint"></pre>
 <pre id="arrPrint2"></pre>
-<p id="somethingvalue"></p>
+
 <script>
     let selectedMap = localStorage.getItem("mapValue");
+
     const time =localStorage.getItem('racetime');
     //
     let lostCityRaceList = [];
@@ -40,6 +41,7 @@
     }
 
     function alert() {
+
         name= document.getElementById('name').value;
         localStorage.setItem('storedName2',name);
         //
@@ -70,6 +72,7 @@
         }
         window.close();
         //
+
     }
     function addToList(content,List) {
         let size = List.length;
