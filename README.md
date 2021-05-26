@@ -1,4 +1,4 @@
-# group-11
+# SimonDrives
 
 ### What is SimonDrives?
 
@@ -8,10 +8,83 @@ SimonDrives is a software that allows the user to drive the car in the SMCE clie
 
 As a result of the ongoing pandemic, isolation and boredom has become prevalent issues which we want to battle with this software. We believe that usage of our software will provide lots of fun moments and bring joy to all who chooses to try it. 
 
-### How you are going to make it?
+### How does it work?
 
-![image](https://user-images.githubusercontent.com/71591829/119638964-74522d80-be17-11eb-9703-7d14fdebba4e.png)
+In broad strokes, the application provides a UI which is created using the Electron framwork. The UI is written in html, css and node. The connection and mapping regarding the controller is done through java(Credits to https://github.com/williamahartman/Jamepad). The car-behavior is written using C++ in Arduino. The communication between arduino and the other parts of the software is handled by MQTT. 
 
 ### Hardware requirements
 
-In order to use this application to its full potential, the user needs to have one compatible controller alongside a functioning PC or Mac. 
+In order to use this application to its full potential, the user needs to have one compatible controller alongside a functioning PC or Mac.
+
+##### User manual
+
+##### 1.0 Installation
+
+Start off by pressing "Code" followed by "Download ZIP" and then specify the prefered directory. You will need some sort of archive-software in order to extract the files. 
+
+The following programs needs to be downloaded before you can start the actual set up process. 
+
+####### 1.1  SMCE 
+Follow instructions provided here: https://github.com/ItJustWorksTM/smce-gd/wiki
+
+####### 1.2  MQTT
+Link to downloading MQTT can be found here: https://mosquitto.org/download/
+
+####### 1.3  Java
+The JDK can be installed here: https://www.oracle.com/java/technologies/javase-downloads.html
+
+####### 1.4  Node, Electron
+Installer for Node can be found here: https://nodejs.org/en/download/
+When Node is installed, run the commandprompt as administrator(or terminal if you are using a MAC). In the command prompt, type "cd group-11".
+Then type: "npm install electron --save-dev", this will install the electron library.
+
+####### 1.5 Extra tracks
+In order to add the extra tracks, download the files found in the links below. Then place the ".zip" in ./Godot/app_userdata/SMCE/mods. When the SMCE client is started, choose the desired track in the drop down menu.
+
+Racetrack "myWorld": https://drive.google.com/file/d/1lHe_47g0P4kTZjiYb3MuHVucRUDM6wJ2/view?usp=sharing (Created by: Johan Axell)
+
+Survival Map: https://drive.google.com/file/d/177es0sBwbxdldIHiEGzbwY_RNfrJIuvE/view?usp=sharing (Created by: Robin Hansen)
+
+Plank Race: https://drive.google.com/file/d/1eHmO1ZvyJ8qMFUZYMPBYEjsX4qQn7E58/view?usp=sharing (Created by: Christofer Jidarv)
+
+##### 2.0 Set up 
+When the installation of the softwares listed above is complete, in order to play the actual game you will have follow the steps below. 
+
+####### 2.1 Java 
+Either you can compile the Java-code in your commandprompt, using "javac gamepad.java" and then "java gamepad.java" or use an IDE of your choice. You should receive a confirmation saying "Controller connected" if a compatible controller is plugged in. 
+
+####### 2.2 MQTT
+In the command prompt, navigate to the Mosquitto root folder(using the "cd"-command as shown above), such as C:\Program Files (x86)\mosquitto and then start by running the command "net start mosquitto". 
+
+####### 2.3 SMCE
+Start the client by opening the SMCE executable followed by "Start Fresh". On the next page, click the "+" and then go to "/group-11/arduino/smartcar/ardunio.ino. You can also click "=" to choose the desired map in the drop down menu. More about this in section 3 in this manual. 
+
+####### 2.4 Node, Electron
+In the commandpromp, find your way to /group-11/node/, in order to start the user interface, type "npm start". 
+
+##### 3.0 How to use
+
+####### 3.1 Leaderboard
+You find the leaderboard-option on the first screen when you do "npm start". The leaderboard sports 4 different sections, depending on what mode and map you choose to play. As of right now, the top 5 scores will be saved for each mode and map. 
+
+####### 3.2 Different game modes // how to change game modes 
+On the first screen, choose "Start". You can then choose what mode you want to play, do note that as of now, the modes are only compatible with certain maps. More information on that can be found below.
+
+####### 3.2.1 Race Mode
+When you choose Race Mode, you will be forwarded to a new screen containing the two different compatible maps. Do note that before you click on the map you want to play, you have to choose the corresponding one in the SMCE client before you click it. For race mode, you can choose to play "myWorld" or "Plank race". When the map is chosen, click the "=" button followed by "Compile". When you have chosen what map you want to play, a screen counting down will show followed by the actual gamescreen. 
+
+####### 3.2.2 Survival and Timetrial mode
+As opposed to the Race Mode, when you choose the mode you will be starting the game right away, no map selection will be available. Do note that the map still needs to be chosen before you choose the game mode. For the survival mode, choose the map fittingly named "Survival mode" and for Time trial, choose "Playground". 
+
+####### 3.3 Controller
+**PICTURE HERE**
+
+##### 4.0 Limitations and future development
+
+##### 5.0 Developer information
+
+
+
+
+
+
