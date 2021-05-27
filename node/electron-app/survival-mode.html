@@ -46,7 +46,7 @@
             localStorage.setItem('survivaltime',seconds);
             document.getElementById("countdown").textContent ="Time: "+seconds;
           }, 1000);
-
+        client.publish("SimonDrives", "speedModeSetSpeed");
     }
 
     function counterStart(){
@@ -63,12 +63,6 @@
         }, 1000);
 
     }
-
-    function resetRace(){
-        client.publish("SimonDrives", "resetRace");
-    }
-
-
 
 
 </script>
