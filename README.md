@@ -76,6 +76,8 @@ When you choose Race Mode, you will be forwarded to a new screen containing the 
 ##### 3.2.2 Survival and Timetrial mode
 As opposed to the Race Mode, when you choose the mode you will be starting the game right away, no map selection will be available. Do note that the map still needs to be chosen before you choose the game mode. For the survival mode, choose the map fittingly named "Survival mode" and for Time trial, choose "Playground". 
 
+In order to get the full functionality that survival mode provides, the user need to change sketch to the file found in "/group-11/arduino/survivalCar/survivalCar.ino". Skipping this step prevents the user from getting a better experience.
+
 ##### 3.3 Controller
 ![image](https://user-images.githubusercontent.com/71591829/119828154-31b55180-befa-11eb-9b59-3d571dcbf327.png)
 ![image](https://user-images.githubusercontent.com/71591829/119825347-23196b00-bef7-11eb-9d2c-513f3cf600d2.png)
