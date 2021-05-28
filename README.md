@@ -20,9 +20,9 @@ In order to use this application to its full potential, the user needs to have o
 
 ### 1.0 Installation
 
-Start off by pressing "Code" followed by "Download ZIP" and then specify the preferred directory. You will need a archive-software in order to extract the files. 
+Start off by pressing "Code" followed by "Download ZIP" and then specify the preferred directory. You will need an archive-software in order to extract the files. 
 
-The following programs needs to be downloaded before you can start the actual set-up process. 
+The following programs need to be downloaded before you can start the actual set-up process. 
 
 ### 1.1  SMCE 
 Follow instructions provided here: https://github.com/ItJustWorksTM/smce-gd/wiki
@@ -35,7 +35,7 @@ The JDK can be installed here: https://www.oracle.com/java/technologies/javase-d
 
 ### 1.4  Node, Electron
 Installer for Node can be found here: https://nodejs.org/en/download/
-When Node is installed, run the commandprompt as administrator(or terminal if you are using a MAC). In the command prompt, type "cd group-11".
+When Node is installed, run the commandprompt as an administrator(or terminal if you are using a MAC). In the command prompt, type "cd group-11".
 Then type: "npm install electron --save-dev", this will install the electron framework.
 
 ### 1.5 Extra tracks
@@ -56,8 +56,9 @@ Either you can compile the Java-code in your commandprompt, using "javac gamepad
 ### 2.2 MQTT
 In the command prompt, navigate to the Mosquitto root folder(using the "cd"-command as shown above), such as C:\Program Files (x86)\mosquitto and then start by running the command "net start mosquitto".
 
+
 ### 2.3 SMCE
-Start the client by opening the SMCE executable followed by "Start Fresh". On the next page, click the "+" and then go to "/group-11/arduino/smartcar/ardunio.ino. You can also click "=" to choose the desired map in the drop down menu. More about this in section 3.
+Start the client by opening the SMCE executable followed by "Start Fresh". On the next page, click the "+" and then go to "/group-11/arduino/smartcar/smartCar.ino. You can also click "=" to choose the desired map in the drop down menu. More about this in section 3.
 
 ### 2.4 Node, Electron
 In the commandprompt, find your way to /group-11/node/, in order to start the user interface, type "npm start". 
@@ -78,14 +79,19 @@ As opposed to the Race Mode, when you choose the mode you will be starting the g
 
 In order to get the full functionality that survival mode provides, the user need to change sketch to the file found in "/group-11/arduino/survivalCar/survivalCar.ino". Skipping this step prevents the user from getting a better experience.
 
+
+Note that you need to have SMCE, and then start the survival mode in the application.
+
+Once you have started SMCE, pressed 'Start', followed by 'Follow', you can then click on 'Survival mode' in the application. You will then be presented with a screen counting down(3..2..1..). Once this countdown is finished, you will then be greated with the gamescreen, and the car will accelerate automatically. Your object is to avoid obstacles that may be in your way, and to survive for as long as possible.
+
 ### 3.3 Controller
 ![image](https://user-images.githubusercontent.com/71591829/119828154-31b55180-befa-11eb-9b59-3d571dcbf327.png)
 ![image](https://user-images.githubusercontent.com/71591829/119825347-23196b00-bef7-11eb-9d2c-513f3cf600d2.png)
 
 ### 4.0 Limitations and future development
-As of now, there are no suitible ways to connect the UI to the actual SMCE client. This results in the user having to manage settings both in the SMCE client and the UI. This also means that in theory, maps that arent created for a specific gamemode can still be played which may skew the leaderboard-results. 
+As of now, there are no suitable ways to connect the UI to the actual SMCE client. This results in the user having to manage settings both in the SMCE client and the UI. This also means that in theory, maps that are not created for a specific gamemode can still be played which may skew the leaderboard-results. 
 
-Future plans include hosting the leaderboard online in order to compete versus players all around the globe, adding more tracks and the option to modify the appearence of the car. We also hope to add multiplayer at some point, so you are able to compete in real time versus other players, as well as competing vs AI-controlled cars. 
+Future plans include hosting the leaderboard online in order to compete versus players all around the globe, adding more tracks and the option to modify the appearence of the car. We also hope to add multiplayer at some point, so you are able to compete in real-time versus other players, as well as competing vs AI-controlled cars. 
 
 ### 5.0 Developer information
 Information regarding creating and modifying current maps and car can be found here: https://github.com/ItJustWorksTM/smce-gd/wiki/Modding
