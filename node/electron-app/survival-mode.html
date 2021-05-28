@@ -56,23 +56,10 @@
                 document.getElementById("startcountdown").textContent =" ";
                 getVideoSources();
                 counter();
+                client.publish("SimonDrives", "speedModeSetSpeed");
             }
         }, 1000);
-        client.publish("SimonDrives", "speedModeSetSpeed");
     }
-
-    function resetRace(){
-        client.publish("SimonDrives", "resetRace");
-    }
-
-    function resetRace(){
-        client.publish("SimonDrives", "resetRace");
-    }
-
-
-
-
-
 
 </script>
 <div class="container" >

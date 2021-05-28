@@ -24,7 +24,7 @@ const auto oneSecond = 1000UL;
 const auto triggerPin = 6;
 const auto echoPin = 7;
 const auto maxDistance = 100;
-const auto minimumDistance = 1;
+const auto minimumDistance = 0.4;
 SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 GP2Y0A21 forwardIR(arduinoRuntime, frontPin);
 GP2Y0A21 leftIR(arduinoRuntime, leftPin);
@@ -90,25 +90,11 @@ void loop() {
   if (mqtt.connected())
   {
       mqtt.loop();
-
-  }
-
-  if(car2.getSpeed()!= 0){
-     const auto distanceCheck = car2.getDistance();
-     const auto travelledDistance = String(distanceCheck);
-     if (distanceCheck != latestDistance) {
-     mqtt.publish("SimonDrives/time/", travelledDistance);
-     latestDistance = distanceCheck;
-     }
-  }
-
-  
-   if(forwardIR.getDistance() < minimumDistance && forwardIR.getDistance() != 0){
-    finishMessage = "SpeedCarFinish";
-    mqtt.publish("SimonDrives/speed/", finishMessage);
-    speedCarFinishedBoolean = true;
-    }
-
-    
-  
-}
+      
+      if(forwardIR.getDistance() < minimumDistance && forwardIR.getDistance() > 0){
+        finishMessage = "SpeedCarFinish";
+        mqtt.publish("SimonDrives/speed/", finishMessage);
+        speedCarFinishedBoolean = true;
+   }    
+  }  
+ }
