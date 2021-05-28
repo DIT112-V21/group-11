@@ -12,6 +12,12 @@ As a result of the ongoing pandemic, isolation and boredom has become prevalent 
 
 In broad strokes, the application provides a UI which is created using the Electron framwork. The UI is written in html, css and node. The connection and mapping regarding the controller is done in java(Credits to https://github.com/williamahartman/Jamepad). The car-behavior is written using C++ in Arduino. The communication between Arduino and the other parts of the software is handled by MQTT. 
 
+### Component diagram
+![image](https://user-images.githubusercontent.com/71591829/119969477-e4df8280-bfae-11eb-87bd-69f54b4d02e2.png)
+
+* UI Information - Information such as messages for resetting the game and to set speed for survival mode.
+** Gamecar information - Information such as how far the car has travelled during TimeTrial as well as if the card has reached the finish line in the race mode. 
+
 ## Hardware requirements
 
 In order to use this application to its full potential, the user needs to have one compatible controller alongside a functioning PC or Mac.
