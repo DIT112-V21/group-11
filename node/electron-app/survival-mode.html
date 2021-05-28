@@ -9,9 +9,7 @@
 
 <script>
     const mqtt = require('mqtt');
-    let distance=0;
     let Message=null;
-    let result;
     const client  = mqtt.connect("mqtt://127.0.0.1");
     (async() => {
         const topic = "SimonDrives/speed/";
@@ -21,15 +19,10 @@
         client.subscribe(topic, {qos: 1});
         client.on('message', function (topic, message) {
             try {
-                distance= message.toString();
-                if(distance>0){
-                }
                 Message= message.toString();
                 if(Message==="SpeedCarFinish"){
                     loadPage("SurvivalModeResult.html");
                 }
-                document.getElementById("#fromMQTT").innerHTML =result;
-
             } catch (e) {
                 console.log(e)
             }
@@ -37,14 +30,14 @@
 
     })();
     function counter(){
-        let seconds = document.getElementById("countdown").textContent;
+        let seconds = document.getElementById("countdownRace").textContent;
         if(seconds==0){
-            document.getElementById("countdown").textContent ="";
+            document.getElementById("countdownRace").textContent ="";
         }
         const countdown = setInterval(function () {
             seconds++;
             localStorage.setItem('survivaltime',seconds);
-            document.getElementById("countdown").textContent ="Time: "+seconds;
+            document.getElementById("countdownRace").textContent ="Time: "+seconds;
           }, 1000);
 
     }
@@ -72,6 +65,12 @@
         client.publish("SimonDrives", "resetRace");
     }
 
+    function resetRace(){
+        client.publish("SimonDrives", "resetRace");
+    }
+
+
+
 
 
 
@@ -80,12 +79,12 @@
     <video id="video" width="100%" height="100%"></video>
 
     <div class="overlay"  >
-        <p id="countdown" contenteditable="true"></p>
+        <p id="countdownRace" contenteditable="true"></p>
     </div>
     <button id="refresh" onclick="getVideoSources()">Refresh Game</button>
     <button id="exitGame" onclick="window.close()">Exit Game</button>
-    <nav id="#fromMQTT"></nav>
 </div>
 <p id="startcountdown" contenteditable="true">3</p>
+<p id="#fromMQTT" style="display: none"></p>
 </body>
 </html>

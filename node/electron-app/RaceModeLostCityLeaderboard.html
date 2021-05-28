@@ -10,7 +10,7 @@
 background-size: cover" onload="maketable()">
 
 <div id="windowSizeForLeaderboard">
-  <p id="leaderboard">Race Mode Leaderboard (Lost City):</p>
+  <p id="leaderboard">Race Mode Leaderboard (My World):</p>
   <button class="btn btnexit" id="Leaderboardexit" onclick="window.close();">Quit</button><br>
 </div>
 <table id="myTableRaceLostCity">
@@ -23,7 +23,7 @@ background-size: cover" onload="maketable()">
 <script>
   let raceStringListLostCity=localStorage.getItem("lostCityRaceList");
   let savedRaceListLostCity= JSON.parse(raceStringListLostCity);
-  document.getElementById("demos").innerHTML=JSON.stringify(savedRaceListLostCity,null,0);
+//  document.getElementById("demos").innerHTML=JSON.stringify(savedRaceListLostCity,null,0);
 
 
   function maketable(){

@@ -11,8 +11,6 @@
 <pre id="arrPrint"></pre>
 <pre id="arrPrint2"></pre>
 <script >
-    const dialogs= require('dialogs')
-    const Dialogs= dialogs()
     let name=null;
     let race=null;
     let timeList=[];
@@ -30,13 +28,11 @@
     function alert() {
         name= document.getElementById('name').value;
         localStorage.setItem('storedName',name);
+        timeList=[];
         addToList(addRace(name,distance),timeList);
-        Dialogs.alert("Your score is now saved "+name, ok => {
-                localStorage.setItem("timeTrialList",JSON.stringify(timeList))
-                document.getElementById("demos").innerHTML=JSON.stringify(timeList,null,0)
-                ,ok
-            }
-        )
+        localStorage.setItem("timeTrialList",JSON.stringify(timeList));
+        window.close();
+        //document.getElementById("demos").innerHTML=JSON.stringify(timeList,null,0)
     }
     function addToList(content,List) {
         let size = List.length;

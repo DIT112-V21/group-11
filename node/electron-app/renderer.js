@@ -82,8 +82,8 @@ function openMediumWindow(page){
     const {BrowserWindow,screen} = require('electron').remote;
     const { width, height } = screen.getPrimaryDisplay().workAreaSize;
     const newWindow = new BrowserWindow({
-        width: 750,
-        height: 420,
+        width: 800,
+        height: 600,
         frame: false,
         webPreferences: {
             nodeIntegration: true,
@@ -99,7 +99,7 @@ function openSmallerWindow(page){
     const { width, height } = screen.getPrimaryDisplay().workAreaSize;
     const newWindow = new BrowserWindow({
         width: 750,
-        height: 400,
+        height: 420,
         frame: false,
         webPreferences: {
             nodeIntegration: true,

@@ -39,10 +39,16 @@ button {
     color: black;
     font-weight: bold;
 }
+#leaderboardtitle{
+    position: fixed;
+    left: 45%;
+    color: black;
+    font-weight: bold;
+}
 #leaderboardbtn{
     position: fixed;
     top: 150px;
-    right: 200px;
+    right:40%;
     background-color :gray;
     color: white;
     padding: 10px 20px;
@@ -65,20 +71,20 @@ button {
 }
 #TimeTrialBtnStart{
     position: fixed;
-    top: 20%;
+    top: 30%;
     left: 45%;
     display: block;
 }
 
 #survivalModeBtnStart{
     position: fixed;
-    top: 30%;
-    left: 45%;
+    top: 45%;
+    left: 44%;
     display: block;
 }
 #raceModeBtnStart{
     position: fixed;
-    top: 40%;
+    top: 60%;
     left: 45%;
     display: block;
 }
@@ -101,10 +107,48 @@ button {
 }
 
 #\#fromMQTT{
-    color: white;
     position: fixed;
-    top:80px;
-    right:150px;
+    top:13%;
+    left: 71%;
+    font-size: x-large;
+    font-weight: bold;
+    font-style: revert;
+    background-color :gray;
+    padding: 5px 20px;
+}
+#text{
+    position: fixed;
+    top:5.1%;
+    left: 71%;
+    font-size: x-large;
+    font-weight: bold;
+    font-style: revert;
+    background-color :gray;
+    padding: 10px 10px;
+}
+#countdown{
+    position: fixed;
+    color: black;
+    top:5.1%;
+    left: 80%;
+    font-size: x-large;
+    font-weight: bold;
+    font-style: revert;
+    background-color :gray;
+    padding: 5px 10px;
+    width: 4%;
+    height: 8%;
+}
+#countdownRace{
+    position: fixed;
+    color: black;
+    top:5.1%;
+    left: 80%;
+    font-size: x-large;
+    font-weight: bold;
+    font-style: revert;
+    background-color :gray;
+    padding: 5px 10px;
 }
 .is-text{
     background-color :gray;
@@ -142,20 +186,15 @@ button {
     bottom: 20px;
     right: 20px;
 }
-.container { position:relative;}
+.container {
+    position:relative;
+}
 .overlay {
     position:fixed;
     color: white;
     top:80px;
     right:54%;
 }
-.Timeleft{
-    position:fixed;
-    color: white;
-    top:80px;
-    right:55%;
-}
-
 
 #survivalMode{
     width: 100%;
@@ -174,9 +213,9 @@ button {
 #raceModeBtn{
     position: fixed;
     top: 20%;
-    left: 50%;
-    height: 12%;
-    width: 12%;
+    left: 40%;
+    height: 10%;
+    width: 25%;
     background-color :gray;
     color: white;
     padding: 5px 10px;
@@ -187,10 +226,10 @@ button {
 
 #RaceModeLostCityBtn{
     position: fixed;
-    top: 40%;
-    left: 50%;
-    height: 15%;
-    width: 12%;
+    top: 35%;
+    left: 40%;
+    height: 10%;
+    width: 25%;
     background-color :gray;
     color: white;
     padding: 5px 10px;
@@ -201,10 +240,10 @@ button {
 
 #timeTrialBtn{
     position: fixed;
-    top: 60%;
-    left: 50%;
-    height: 15%;
-    width: 12%;
+    top: 50%;
+    left: 40%;
+    height: 10%;
+    width: 25%;
     text-align: center;
     background-color :gray;
     color: white;
@@ -215,10 +254,10 @@ button {
 
 #survivalModeBtn{
     position: fixed;
-    top: 80%;
-    left: 50%;
-    height: 15%;
-    width: 12%;
+    top: 65%;
+    left: 40%;
+    height: 10%;
+    width: 25%;
     text-align: center;
     background-color :gray;
     color: white;
@@ -229,10 +268,10 @@ button {
 
 #exitBtnFromLeaderboard{
     position: fixed;
-    top: 80%;
-    left: 80%;
-    height: 15%;
-    width: 12%;
+    top: 87%;
+    left: 87%;
+    height: 10%;
+    width: 10%;
     text-align: center;
     background-color :gray;
     color: white;
@@ -242,9 +281,9 @@ button {
 }
 
 #LostCityBtn{
-    position: absolute;
-    top: 60%;
-    left: 30%;
+    position: fixed;
+    top: 65%;
+    left: 35%;
 }
 
 #LostCityImage{
@@ -252,13 +291,14 @@ button {
     width: 20%;
     height: 20%;
     top: 40%;
-    left: 30%;
+    left: 31%;
 }
 
 #PlankMapBtn{
-    position: absolute;
-    top: 60%;
-    left: 60%;
+    position: fixed;
+    top: 65%;
+    left: 65%;
+=======
 }
 
 #PlankRaceImage{
@@ -266,13 +306,13 @@ button {
     width: 20%;
     height: 20%;
     top: 40%;
-    left: 60%;
+    left: 61%;
 }
 
 #SelectMapTitle{
     position: fixed;
     top: 20%;
-    left: 45%;
+    left: 40%;
     color: white;
     font-size: large;
     font-weight: bold;

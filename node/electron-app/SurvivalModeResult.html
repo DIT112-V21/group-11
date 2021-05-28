@@ -15,8 +15,6 @@
     //
 
     let name = null;
-    const dialogs= require('dialogs')
-    const Dialogs= dialogs()
     const time =localStorage.getItem('survivaltime');
     let survivalList=[];
     localStorage.setItem('storedTime',time);
@@ -38,11 +36,8 @@
         survivalList.sort(function (a, b){
             return a.Time - b.Time;
         });
-        Dialogs.alert("Your score is now saved "+name, ok => {
-                localStorage.setItem("survivalList",JSON.stringify(survivalList))
-                window.close(), ok
-            }
-        )
+        localStorage.setItem("survivalList",JSON.stringify(survivalList))
+        window.close();
     }
     function addToList(content,List) {
         let size = List.length;
@@ -65,10 +60,6 @@
     function clearList(){
         survivalList=[];
     }
-
-
-
-
 
 </script>
 <h1 id="value"></h1>

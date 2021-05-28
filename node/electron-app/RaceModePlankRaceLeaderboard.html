@@ -10,10 +10,10 @@
 background-size: cover" onload="maketable()">
 
 <div id="windowSizeForLeaderboard">
-  <p id="leaderboard">Time Trial Leaderboard:</p>
+  <p id="leaderboard">Race Mode Leaderboard (Plank Race):</p>
   <button class="btn btnexit" id="Leaderboardexit" onclick="window.close();">Quit</button><br>
 </div>
-<table id="myTableTimeTrial">
+<table id="myTablePlankRace">
   <tr>
     <td>Player</td>
     <td>Time</td>
@@ -21,17 +21,17 @@ background-size: cover" onload="maketable()">
 </table>
 <p id="demos"></p>
 <script>
-  let timeStringList=localStorage.getItem("timeTrialList");
-  let savedTimeList= JSON.parse(timeStringList);
-//  document.getElementById("demos").innerHTML=JSON.stringify(savedTimeList,null,0);
+  let raceStringListPlankRace=localStorage.getItem("plankRaceList");
+  let savedRaceListPlankRace= JSON.parse(raceStringListPlankRace);
+ // document.getElementById("demos").innerHTML=JSON.stringify(savedRaceListPlankRace,null,0);
 
 
   function maketable(){
-    for (let i = 0; i < savedTimeList.length; i++){
-      const obj = savedTimeList[i];
+    for (let i = 0; i < savedRaceListPlankRace.length; i++){
+      const obj = savedRaceListPlankRace[i];
       let value=null;
       let j=0;
-      const table = document.getElementById("myTableTimeTrial");
+      const table = document.getElementById("myTablePlankRace");
       const row=table.insertRow(1);
       const cell1 = row.insertCell(0);
       const cell2 = row.insertCell(1);
