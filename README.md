@@ -15,9 +15,9 @@ In broad strokes, the application provides a UI which is created using the Elect
 ### Component diagram
 ![image](https://user-images.githubusercontent.com/71591829/119969477-e4df8280-bfae-11eb-87bd-69f54b4d02e2.png)
 
-* UI Information - Information such as messages for resetting the game and to set speed for survival mode.
+UI Information* - Information such as messages for resetting the game and to set speed for survival mode.
 
-** Gamecar information - Information such as how far the car has travelled during TimeTrial as well as if the card has reached the finish line in the race mode. 
+Gamecar information** - Information such as how far the car has travelled during TimeTrial as well as if the card has reached the finish line in the race mode. 
 
 ## Hardware requirements
 
