@@ -65,8 +65,6 @@ auto message_func = [](String SimonDrives, String message){
           car.setAngle(0);
       } else if (message == "stop") {
           car.setSpeed(0);
-      } else if (message == "speedModeSetSpeed"){
-          car.setSpeed(50);
       } else if (message == "resetRace"){
           raceCarFinishedBoolean = false;
           speedCarFinishedBoolean = false;
