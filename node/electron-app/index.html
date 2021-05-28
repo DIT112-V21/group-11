@@ -5,6 +5,7 @@
     <title>Hello World!</title>
     <link rel="stylesheet" href="style.css">
     <script src="leadboard.html"></script>
+    <script src="renderer.js"></script>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <script src="leadboardWin.js"></script>
 </head>
@@ -16,7 +17,7 @@ background-size: cover">
         <div  class="btns">
             <button class="btn btnstart" id="start" onclick="window.open('startWindow.html')">Start</button>
             <p></p>
-            <button class="btn leadboard" id="leaderboardbtn" onclick="window.open('leadboard.html')">Race Mode Leader Board</button><br>
+            <button class="btn leadboard" id="leaderboardbtn" onclick="openSmallerWindow('LeaderboardSelection.html')">Leaderboards</button><br>
             <p></p>
             <button class="btn btnexit" id="exit" onclick="window.close();">Exit Game</button><br>
             <p></p>

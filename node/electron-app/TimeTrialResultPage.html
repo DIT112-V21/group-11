@@ -6,23 +6,21 @@
     <script src="ResultHandler.js"></script>
 </head>
 <body id="result" style="background-color:white" onload = showDistance();>
-<button id="resultButton" onclick="alert();race();">Save result</button>
+<button id="resultButton" onclick="alert();clear();">Save result</button>
 <input type="text" id="name">
 <pre id="arrPrint"></pre>
 <pre id="arrPrint2"></pre>
 <script >
-    const dialogs= require('dialogs')
-    const Dialogs= dialogs()
     let name=null;
     let race=null;
     let timeList=[];
     let distance= localStorage.getItem("distance");
     localStorage.setItem('storedScore',distance);
-    let stringList=localStorage.getItem("User Data: ");
+    let stringList=localStorage.getItem("timeTrialList");
     let exportedList=JSON.parse(stringList);
-      function showDistance() {
-      let result =  "Your Final Distance is "+ localStorage.getItem("distance");
-      document.getElementById("value").innerHTML=result;
+    function showDistance() {
+        let result =  "Your Final Distance is "+ localStorage.getItem("distance");
+        document.getElementById("value").innerHTML=result;
     }
     if(exportedList.length!=0){
         timeList=exportedList;
@@ -30,13 +28,12 @@
     function alert() {
         name= document.getElementById('name').value;
         localStorage.setItem('storedName',name);
+        timeList=[];
         addToList(addRace(name,distance),timeList);
-        Dialogs.alert("Your score is now saved "+name, ok => {
-            localStorage.setItem("User Data: ",JSON.stringify(timeList))
-            //document.getElementById("demos").innerHTML=JSON.stringify(raceList,null,0)
-             window.close(), ok
-            }
-        )
+        localStorage.setItem("timeTrialList",JSON.stringify(timeList));
+        window.close();
+        //document.getElementById("demos").innerHTML=JSON.stringify(timeList,null,0)
+
     }
     function addToList(content,List) {
         let size = List.length;

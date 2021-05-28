@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="leadboard.html"></script>
+    <script src="renderer.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <script src="LeaderboardSelection.js"></script>
+</head>
+<body style="background: white; background-image: url('images/racecar.jpg'); background-repeat: no-repeat;
+background-size: cover">
+<center>
+    <div>
+        <label id="leaderboardtitle">Leader Boards</label>
+        <div  class="btns">
+            <button class="btn btnstart" id="raceModeBtn" onclick="openSmallerWindow('RaceModePlankRaceLeaderboard.html')">Race Mode (Plank Race)</button>
+            <p></p>
+            <button class="btnLeaderboardLostCity" id="RaceModeLostCityBtn" onclick="openSmallerWindow('RaceModeLostCityLeaderboard.html')"> Race Mode (My World)</button>
+            <p></p>
+            <button class="btn leadboard" id="survivalModeBtn" onclick="openSmallerWindow('survivalLeaderboard.html')">Survival Mode</button>
+            <p></p>
+            <button class="btn leadboard" id="timeTrialBtn" onclick="openSmallerWindow('TimeTrialLeaderboard.html')">Time Trial Mode</button>
+            <p></p>
+
+            <button class="btn btnexit" id="exitBtnFromLeaderboard" onclick="window.close();">Exit</button><br>
+            <p></p>
+        </div>
+    </div>
+</center>
+<body style="-webkit-app-region: drag">
+</body>
+</body>
+</html>

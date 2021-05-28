@@ -6,27 +6,65 @@
     <script src="ResultHandler.js"></script>
 </head>
 <body id="result" style="background-color:white" onload = showDistance();>
-<button id="resultButton" onclick="alert();race();">Save result</button>
+<button id="resultButton" onclick="alert();">Save result</button>
 <input type="text" id="name">
 <pre id="arrPrint"></pre>
 <pre id="arrPrint2"></pre>
 <script >
-    const dialogs= require('dialogs')
-    const Dialogs= dialogs()
-    const time =localStorage.getItem('time');
+
+    //
+
+    let name = null;
+    const time =localStorage.getItem('survivaltime');
+    let survivalList=[];
     localStorage.setItem('storedTime',time);
+    let stringList=localStorage.getItem("survivalList");
+    let exportedList=JSON.parse(stringList);
+    if(exportedList.length!=0){
+        survivalList=exportedList;
+    }
+
     function showDistance() {
-        let result =  "Your Time was "+ localStorage.getItem('time') + " seconds";
+        let result =  "Your Time was "+ localStorage.getItem('survivaltime') + " seconds";
         document.getElementById("value").innerHTML=result;
     }
+
     function alert() {
         name= document.getElementById('name').value;
         localStorage.setItem('storedName2',name);
-        Dialogs.alert("Your score is now saved "+name, ok => {
-            window.close(), ok
-            }
-        )
+        addToList(addRace(name,time),survivalList);
+        survivalList.sort(function (a, b){
+            return a.Time - b.Time;
+        });
+        localStorage.setItem("survivalList",JSON.stringify(survivalList))
+        window.close();
     }
+    function addToList(content,List) {
+        let size = List.length;
+        if (size === 0) {
+            List[0] = content;
+        } else {
+            List[size++] = content;
+        }
+    }
+
+    function addRace(Name,Score){
+        let username=Name;
+        let result=Score
+        let race = {
+            'names': username,
+            'Time': result
+        };
+        return race;
+    }
+    function clearList(){
+        survivalList=[];
+    }
+
+
+
+
+
 </script>
 <h1 id="value"></h1>
 <h2 id="question">Would you like to save your result?</h2>

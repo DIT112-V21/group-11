@@ -61,12 +61,45 @@ openVideoWindow = event => {
         video.load(getVideoSources())
     })
 }
+
 function openWindow(page){
     const {BrowserWindow,screen} = require('electron').remote;
     const { width, height } = screen.getPrimaryDisplay().workAreaSize;
     const newWindow = new BrowserWindow({
         width: width,
         height: height,
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
+        }
+    })
+    newWindow.loadFile(page)
+}
+
+function openMediumWindow(page){
+    const {BrowserWindow,screen} = require('electron').remote;
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+    const newWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
+        }
+    })
+    newWindow.loadFile(page)
+}
+
+function openSmallerWindow(page){
+    const {BrowserWindow,screen} = require('electron').remote;
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+    const newWindow = new BrowserWindow({
+        width: 750,
+        height: 420,
         frame: false,
         webPreferences: {
             nodeIntegration: true,
