@@ -21,7 +21,7 @@ public class gamepad {
         ControllerManager controller = new ControllerManager();
         controller.initSDLGamepad();
 
-        System.out.println(controller.getNumControllers());
+        System.out.println(controller.getNumControllers() + " Controller(s) connected");
         ControllerIndex currController = controller.getControllerIndex(0);
 
         while(true) {

@@ -58,12 +58,18 @@
                 counter();
             }
         }, 1000);
-
+        client.publish("SimonDrives", "speedModeSetSpeed");
     }
 
     function resetRace(){
         client.publish("SimonDrives", "resetRace");
     }
+
+    function resetRace(){
+        client.publish("SimonDrives", "resetRace");
+    }
+
+
 
 
 

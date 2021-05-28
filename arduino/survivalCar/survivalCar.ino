@@ -23,8 +23,8 @@ int latestDistance = 0;
 const auto oneSecond = 1000UL;
 const auto triggerPin = 6;
 const auto echoPin = 7;
-const auto maxDistance = 400;
-const auto minimumDistance = 50;
+const auto maxDistance = 100;
+const auto minimumDistance = 1;
 SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 GP2Y0A21 forwardIR(arduinoRuntime, frontPin);
 GP2Y0A21 leftIR(arduinoRuntime, leftPin);
@@ -55,18 +55,14 @@ int hardTurn = 30;
 auto message_func = [](String SimonDrives, String message){
       if (message == "forward") {
           car.setSpeed(100);
-      } else if (message == "backward") {
-          car.setSpeed(-100);
       } else if (message == "right") {
-          car.setAngle(70);
+          car.setAngle(50);
       } else if (message == "left") {
-          car.setAngle(-70);
+          car.setAngle(-50);
       } else if (message == "straight") {
           car.setAngle(0);
-      } else if (message == "stop") {
-          car.setSpeed(0);
       } else if (message == "speedModeSetSpeed"){
-          car.setSpeed(50);
+          car.setSpeed(100);
       } else if (message == "resetRace"){
           raceCarFinishedBoolean = false;
           speedCarFinishedBoolean = false;
@@ -107,23 +103,12 @@ void loop() {
   }
 
   
-
-  if(leftIR.getDistance() != 0 && rightIR.getDistance() != 0 && raceCarFinishedBoolean == false){
-    finishMessage = "RaceCarFinish";
-    mqtt.publish("SimonDrives/race/", finishMessage);
-    raceCarFinishedBoolean = true;
-    }
-
-  if((forwardIR.getDistance() > 0.1 || leftIR.getDistance() > 0.1  || rightIR.getDistance() > 0.1) && speedCarFinishedBoolean == false){
+   if(forwardIR.getDistance() < minimumDistance && forwardIR.getDistance() != 0){
     finishMessage = "SpeedCarFinish";
     mqtt.publish("SimonDrives/speed/", finishMessage);
     speedCarFinishedBoolean = true;
     }
 
-
-
-  
-
-
+    
   
 }

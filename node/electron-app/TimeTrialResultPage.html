@@ -6,7 +6,7 @@
     <script src="ResultHandler.js"></script>
 </head>
 <body id="result" style="background-color:white" onload = showDistance();>
-<button id="resultButton" onclick="alert();clear();">Save result</button>
+<button id="resultButton" onclick="alert();">Save result</button>
 <input type="text" id="name">
 <pre id="arrPrint"></pre>
 <pre id="arrPrint2"></pre>
@@ -33,7 +33,6 @@
         localStorage.setItem("timeTrialList",JSON.stringify(timeList));
         window.close();
         //document.getElementById("demos").innerHTML=JSON.stringify(timeList,null,0)
-
     }
     function addToList(content,List) {
         let size = List.length;
